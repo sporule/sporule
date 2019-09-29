@@ -53,12 +53,12 @@ class Post extends React.Component {
         }
         else {
             //load from cache
-            this.loadPostFromCache(path);
+            this.loadPostFromCache(this.props.match.params.path);
         }
     }
 
-    loadPostFromCache = (path) => {
-        let posts = this.props.posts.items.filter(o => o.path.includes(this.props.match.params.path));
+    loadPostFromCache = (fileName) => {
+        let posts = this.props.posts.items.filter(o => o.path.includes(fileName));
         if (posts.length > 0) {
             post = this.stylePost(posts[0]);
             this.setState(() => {
@@ -66,8 +66,7 @@ class Post extends React.Component {
             });
         }
         else {
-            //load the post on the fly if it is not in the cache.
-            this.refreshPost(path);
+            window.location.href = "/";
         }
 
     }
