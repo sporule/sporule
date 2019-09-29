@@ -44,16 +44,16 @@ class Post extends React.Component {
 
     componentDidMount() {
         if (Config.alwaysRefreshPost) {
+            //load from cache
+            this.loadPostFromCache(this.props.match.params.path);
+        }
+        else {
             let path = "/posts/" + this.props.match.params.path + ".md";
             if (process.env.ROUTE) {
                 path = process.env.ROUTE + path;
             }
             //always refresh the posts
             this.refreshPost(path);
-        }
-        else {
-            //load from cache
-            this.loadPostFromCache(this.props.match.params.path);
         }
     }
 
