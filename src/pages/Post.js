@@ -43,88 +43,66 @@ class Post extends React.Component {
     }
 
     componentDidMount() {
-        if (Config.alwaysRefreshPost) {
-            //load from cache
-            this.loadPostFromCache(this.props.match.params.path);
+        let path = "/posts/" + this.props.match.params.path + ".md";
+        if (process.env.ROUTE) {
+            path = process.env.ROUTE + path;
         }
-        else {
-            let path = "/posts/" + this.props.match.params.path + ".md";
-            if (process.env.ROUTE) {
-                path = process.env.ROUTE + path;
-            }
-            //always refresh the posts
-            this.refreshPost(path);
-        }
+        this.loadSinglePost(path);
     }
 
-    loadPostFromCache = (fileName) => {
-        let posts = this.props.posts.items.filter(o => o.path.includes(fileName));
-        if (posts.length > 0) {
-            post = this.stylePost(posts[0]);
-            this.setState(() => {
-                return { "post": post };
-            });
-        }
-        else {
-            window.location.href = "/";
-        }
 
-    }
-
-    refreshPost = (path) => {
+    loadSinglePost = (path) => {
         let resources = new PostResources();
         resources.getAll([path], true).then(posts => {
             if (posts != null && posts !== undefined && posts.items.length > 0) {
-                let post = this.stylePost(posts.items[0]);
+                const mdConfig = {
+                    html: true,
+                    linkify: true,
+                    typography: true,
+                    highlight: function (str, lang) {
+                        if (lang && hljs.getLanguage(lang)) {
+                            try {
+                                return hljs.highlight(lang, str).value;
+                            } catch (__) { }
+                        }
+
+                        return ''; // use external default escaping
+                    }
+                }
+                const tocConfig = {
+                    "anchorClassName": "md-anchor",
+                    "tocClassName": "md-toc",
+                    "tocCallback": function (tocMarkdown, tocArray, tocHtml) {
+                        this.setState(() => {
+                            return { "toc": tocHtml };
+                        });
+                    }.bind(this)
+                }
+                const prismConfig = {
+
+                }
+                posts.items[0].html = new MarkdownIt(mdConfig).use(markdownItTocAndAnchor, tocConfig).use(prism).use(iterator, 'url_new_win', 'link_open', function (tokens, idx) {
+                    var aIndex = tokens[idx].attrIndex('target');
+                    if (aIndex < 0) {
+                        tokens[idx].attrPush(['target', '_blank']);
+                    } else {
+                        tokens[idx].attrs[aIndex][1] = '_blank';
+                    }
+                    var aIndex = tokens[idx].attrIndex('rel');
+                    if (aIndex < 0) {
+                        tokens[idx].attrPush(['rel', 'nofollow']);
+                    } else {
+                        tokens[idx].attrs[aIndex][1] = 'nofollow';
+                    }
+                }).render(posts.items[0].content);
                 this.setState(() => {
-                    return { "post": post };
+                    return { "post": posts.items[0] };
                 });
             }
             else {
                 window.location.href = "/";
             }
         })
-    }
-
-    stylePost = (post) => {
-        const mdConfig = {
-            html: true,
-            linkify: true,
-            typography: true,
-            highlight: function (str, lang) {
-                if (lang && hljs.getLanguage(lang)) {
-                    try {
-                        return hljs.highlight(lang, str).value;
-                    } catch (__) { }
-                }
-
-                return ''; // use external default escaping
-            }
-        }
-        const tocConfig = {
-            "anchorClassName": "md-anchor",
-            "tocClassName": "md-toc",
-            "tocCallback": function (tocMarkdown, tocArray, tocHtml) {
-                this.setState(() => {
-                    return { "toc": tocHtml };
-                });
-            }.bind(this)
-        }
-        post.html = new MarkdownIt(mdConfig).use(markdownItTocAndAnchor, tocConfig).use(prism).use(iterator, 'url_new_win', 'link_open', function (tokens, idx) {
-            var aIndex = tokens[idx].attrIndex('target');
-            if (aIndex < 0) {
-                tokens[idx].attrPush(['target', '_blank']);
-            } else {
-                tokens[idx].attrs[aIndex][1] = '_blank';
-            }
-            var aIndex = tokens[idx].attrIndex('rel');
-            if (aIndex < 0) {
-                tokens[idx].attrPush(['rel', 'nofollow']);
-            } else {
-                tokens[idx].attrs[aIndex][1] = 'nofollow';
-            }
-        }).render(post.content);
-        return post;
     }
 
     render() {
