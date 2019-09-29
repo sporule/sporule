@@ -8,7 +8,7 @@ const Config = {
     postPerPage: 8,
     googleAnaltics: "",
     alwaysRefreshPost: false,
-    gh_custom_domain: true
+    gh_custom_domain: false
 
 }
 
