@@ -43,11 +43,11 @@ class Post extends React.Component {
     }
 
     componentDidMount() {
+        let path = "/posts/" + this.props.match.params.path + ".md";
+        if (process.env.ROUTE) {
+            path = process.env.ROUTE + path;
+        }
         if (Config.alwaysRefreshPost) {
-            let path = "/posts/" + this.props.match.params.path + ".md";
-            if (process.env.ROUTE) {
-                path = process.env.ROUTE + path;
-            }
             //always refresh the posts
             this.refreshPost(path);
         }
