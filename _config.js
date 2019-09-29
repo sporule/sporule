@@ -7,6 +7,7 @@ const Config = {
     disqusShortname: "yourdisqusshortname",
     postPerPage: 8,
     googleAnaltics: "",
+    alwaysRefreshPost: true,
     gh_custom_domain: false
 
 }
