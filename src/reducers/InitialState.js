@@ -7,7 +7,6 @@ export default {
         "metas": {
           "categories": [],
           "tags": [],
-          "title": "",
           "date": "",
           "coverimage": ""
         },
