@@ -60,7 +60,7 @@ class Post extends React.Component {
     loadPostFromCache = (path) => {
         let posts = this.props.posts.items.filter(o => o.path.includes(this.props.match.params.path));
         if (posts.length > 0) {
-            post = this.stylePost(posts[0]);
+            let post = this.stylePost(posts[0]);
             this.setState(() => {
                 return { "post": post };
             });
