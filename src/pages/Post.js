@@ -13,7 +13,7 @@ import prism from 'markdown-it-prism';
 import "prismjs/components/prism-bash";
 import "prismjs/components/prism-java";
 import "prismjs/components/prism-python";
-import * as pj from "prismjs/components/prism-javascript";
+import "prismjs/components/prism-javascript";
 import "prismjs/components/prism-clike";
 import "prismjs/components/prism-go";
 import "../styles/prism.css";
