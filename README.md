@@ -20,6 +20,10 @@ First Version Released
 - Seperating the site and the content as it renders the markdown on the fly.
 - Rich meta data through Front Matter.
 
+## Credits To
+
+To Be Completed Later.
+
 ## Quick Start - Set up
 
 ### Fork This Repo to your GitHub Account
