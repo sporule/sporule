@@ -101,6 +101,9 @@ module.exports = {
       chunkFilename: "[id].css"
     }),
     new OfflinePlugin({
+      ServiceWorker: {
+        events: true
+      },
       responseStrategy: 'cache-first',
       excludes: ['**/.*', '**/*.map', '**/*.gz', '**/*.txt', '**/sw.js', '**/*.md', '**/_redirects', '**/*.jpg', '**/*.png', '**/*.gif'],
       autoUpdate: 1000 * 60 * 2,

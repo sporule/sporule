@@ -11,14 +11,12 @@ import "./styles/styles.css";
 
 if ('serviceWorker' in navigator) {
     OfflinePluginRuntime.install({
-        onUpdating: () => {
-            console.log('SW Event:', 'onUpdating');
+        onUpdateReady: () => {
+            OfflinePluginRuntime.applyUpdate();
         },
-        onUpdateReady: () => { console.log("update is ready"); OfflinePluginRuntime.applyUpdate(); },
-        onUpdated: () => console.log("sw assets updated"),
-        onUpdateFailed: () => {
-            console.log('SW Event:', 'onUpdateFailed');
-          }
+        onUpdated: () => {
+            window.location.reload();
+        }
     });
 }
 
