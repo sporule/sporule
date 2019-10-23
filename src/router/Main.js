@@ -26,6 +26,7 @@ class Main extends React.Component {
                     <Route exact path="/" component={Posts} />
                     <Route exact path="/categories/:categories" component={Posts} />
                     <Route exact path="/items/:path" component={Post} />
+                    <Route exact path="/:path/" component={Post} />
                     <Route exact path="/pages/:page" component={CustomPage} />
                 </Switch>
                 <Footer />
