@@ -18,6 +18,7 @@ import "prismjs/components/prism-clike";
 import "prismjs/components/prism-go";
 import "../styles/prism.css";
 import iterator from 'markdown-it-for-inline';
+import { Helmet } from "react-helmet";
 
 class Post extends React.Component {
     constructor(props, context) {
@@ -128,7 +129,6 @@ class Post extends React.Component {
     }
 
     render() {
-        document.title = document.title.split(" - ")[0] + " - " + this.state.post.title;
         const disqusShortname = Config.disqusShortname;
         const disqusConfig = {
             url: window.location.href,
@@ -136,7 +136,13 @@ class Post extends React.Component {
             title: this.props.match.params.path,
         };
         return (
-            <PostTemplate toc={renderHTML(this.state.toc)} post={this.state.post} content={renderHTML(this.state.post.html)} disqus={<Disqus.DiscussionEmbed shortname={disqusShortname} config={disqusConfig} />} />
+            <React.Fragment>
+                <Helmet>
+                    <meta charSet="utf-8" />
+                    <title>{Config.site} - {this.state.post.title}</title>
+                </Helmet>
+                <PostTemplate toc={renderHTML(this.state.toc)} post={this.state.post} content={renderHTML(this.state.post.html)} disqus={<Disqus.DiscussionEmbed shortname={disqusShortname} config={disqusConfig} />} />
+            </React.Fragment>
         );
     }
 }

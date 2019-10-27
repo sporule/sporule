@@ -5,7 +5,8 @@ import queryString from 'query-string';
 import * as PostActions from "../actions/PostAction";
 import PostsTemplate from "../../template/posts";
 import * as PostHelper from "../helpers/postHelper";
-
+import { Helmet } from "react-helmet";
+import Config from "../../_config";
 
 class Posts extends React.Component {
     constructor(props, context) {
@@ -68,10 +69,6 @@ class Posts extends React.Component {
 
     }
 
-    componentDidMount() {
-        document.title = document.title.split(" - ")[0] + " - " + "Posts";
-    }
-
 
     toPage = (page) => {
         window.location.href = window.location.pathname + "?page=" + page;
@@ -97,7 +94,15 @@ class Posts extends React.Component {
                 this.toPage(parseInt(posts.page) + 1);
             }
         }
-        return <PostsTemplate posts={posts} categories={this.categories} tags={this.tags} prev={prev} next={next} pinned={pinnedPosts} />
+        return (
+            <React.Fragment>
+                <Helmet>
+                    <meta charSet="utf-8" />
+                    <title>{Config.site} - {Config.description}</title>
+                </Helmet>
+                <PostsTemplate posts={posts} categories={this.categories} tags={this.tags} prev={prev} next={next} pinned={pinnedPosts} />
+            </React.Fragment>
+        )
     }
 }
 
