@@ -1,10 +1,9 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Switch } from 'react-router-dom';
-import Posts from '../pages/Posts';
+import Page from '../pages/Page';
 import Post from '../pages/Post';
 import Nav from "../pages/Nav";
-import CustomPage from "../pages/CustomPage";
 import ScriptsTemplate from "../../template/scripts";
 import Footer from "../pages/Footer";
 
@@ -23,11 +22,10 @@ class Main extends React.Component {
             <Router basename={this.basename}>
                 <Nav />
                 <Switch>
-                    <Route exact path="/" component={Posts} />
-                    <Route exact path="/categories/:categories" component={Posts} />
+                    <Route exact path="/" component={Page} />
+                    <Route exact path="/categories/:categories" component={Page} />
                     <Route exact path="/items/:path" component={Post} />
-                    <Route exact path="/:path/" component={Post} />
-                    <Route exact path="/pages/:page" component={CustomPage} />
+                    <Route exact path="/:page/" component={Page} />
                 </Switch>
                 <Footer />
                 <ScriptsTemplate />

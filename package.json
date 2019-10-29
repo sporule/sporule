@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.4.4",
-    "disqus-react": "^1.0.6",
+    "disqus-react": "^1.0.7",
     "markdown-handler": "^0.3.2",
     "markdown-it": "^9.1.0",
     "markdown-it-for-inline": "^0.1.1",
