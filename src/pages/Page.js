@@ -62,10 +62,13 @@ class Page extends React.Component {
         };
         const categoriesString = this.props.match.params.categories;
         const tagsString = queryString.parse(this.props.location.search).tags;
+        const excludedTagsString = queryString.parse(this.props.location.search).extags;
         this.page = queryString.parse(this.props.location.search).page || 1;
         this.categories = categoriesString ? categoriesString.split(",") : [];
         this.tags = tagsString ? tagsString.split(",") : [];
+        this.excludedTags = excludedTagsString ? excludedTagsString.split(",") : [];
         this.searchString = queryString.parse(this.props.location.search).search || "";
+
 
     }
 
@@ -75,14 +78,14 @@ class Page extends React.Component {
     }
 
     render() {
-        let pageName = this.props.match.params.page||"home";
+        let pageName = this.props.match.params.page || "home";
         let Page = CustomPages[pageName.toLowerCase()];
         if (!Page) {
             window.location.href = window.location.origin;
         }
         else {
             const pinnedPosts = PostHelper.getPinnedPosts(this.props.posts);
-            const posts = PostHelper.getPostsByPage(this.props.posts, this.page, true, this.searchString, this.categories, this.tags);
+            const posts = PostHelper.getPostsByPage(this.props.posts, this.page, true, this.searchString, this.categories, this.tags, this.excludedTags);
             if ((posts.length <= 0 && this.props.posts.length > 0) || posts.invalidPage) {
                 //reset filters if there is no posts
                 window.location.href = "/";
