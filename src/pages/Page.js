@@ -75,7 +75,7 @@ class Page extends React.Component {
     }
 
     render() {
-        let pageName = this.props.match.params.page||"posts";
+        let pageName = this.props.match.params.page||"home";
         let Page = CustomPages[pageName.toLowerCase()];
         if (!Page) {
             window.location.href = window.location.origin;
