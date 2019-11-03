@@ -107,7 +107,7 @@ export const postsFilter = (posts, excludePinned, searchString, categories, tags
     }
     if (tags.length > 0) {
         tempPosts.items = tempPosts.items.filter(o => {
-            return Utility.isIntersect(o.metas.tags, tags);
+            return Utility.isSubset(o.metas.tags, tags);
         })
     }
     
