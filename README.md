@@ -108,10 +108,12 @@ The CNAME file is under gh-pages/, add your custom domain to the CNAME file. Lea
 
 You blog will get updated automatically everytime you make any changes in your git repo.
 
-
 ## Change Templates
 
-Currently the Sporule system use Github submodule system for templates, which means you will not be able to edit template config if you don't fork the template repo yourself. I am going to write a more detail tutorial in a late stage, but below are some simple guideline on how to do it:
+Currently the Sporule system use Github submodule system for templates, which means you will not be able to edit template config if you don't fork the template repo yourself. There are two ways to change or update the template:
+
+1. Turn the submodule into the actual files and commit into your repo.
+2. Fork the template and commit any changes to your forked template(easier to upgrade if template upgrades in the future).
 
 ### Fork the Template Repo
 
