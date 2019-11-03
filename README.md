@@ -55,7 +55,7 @@ _config.js is the configuration file for your site.
 
 #### Theme Configurations
 
-These configuration will be used for that specific theme only, they are located under templates/_templateConfig.js. Look at the theme documentation to understand what is available.
+These configuration will be used for that specific theme only, they are located under templates/_templateConfig.js. Look at the theme documentation to understand what is available. You will not be able to change the template configuration unless you fork the template repo. Please see change templates section for more details.
 
 ![TemplateConfig](https://i.imgur.com/mVoIG2w.png)
 
@@ -107,6 +107,35 @@ The CNAME file is under gh-pages/, add your custom domain to the CNAME file. Lea
 ### End of Github Pages Deployment Set Up
 
 You blog will get updated automatically everytime you make any changes in your git repo.
+
+
+## Change Templates
+
+Currently the Sporule system use Github submodule system for templates, which means you will not be able to edit template config if you don't fork the template repo yourself. I am going to write a more detail tutorial in a late stage, but below are some simple guideline on how to do it:
+
+### Fork the Template Repo
+
+You can find all templates under [https://github.com/sporule](https://github.com/sporule).
+
+You will need to fork one of the template you want to use.
+
+### Remove the current template
+
+Credits to [this page](https://gist.github.com/myusuf3/7f645819ded92bda6677)
+
+- Delete the .gitmodules file
+- Delete the template folder
+- Delete the section of [submodule "template"] in .git/config file
+- Run git rm --cached template
+- Delete this folder .git\modules\template
+
+### Add the template you want
+
+Run git submodule add << Your Fork Repo >> template.
+
+### Update template or template files
+
+Please make sure you go into your template folder and then commit and push your changes back to your fork repo.
 
 ## Demo
 
