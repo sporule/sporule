@@ -6,5 +6,5 @@ export const isIntersect = (a, b) => {
 }
 
 export const isSubset = (set, subset) => {
-    return new Set([...set, ...subset]).length == set.length;
+    return new Set([...set, ...subset]).size == set.length;
 }
