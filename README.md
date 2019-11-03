@@ -130,10 +130,11 @@ Credits to [this page](https://gist.github.com/myusuf3/7f645819ded92bda6677)
 - Delete the section of [submodule "template"] in .git/config file
 - Run git rm --cached template
 - Delete this folder .git\modules\template
+- Commit the changes
 
 ### Add the template you want
 
-Run git submodule add << Your Fork Repo >> template.
+Run git submodule add --force << Your Fork Repo >> template.
 
 ### Update template or template files
 
