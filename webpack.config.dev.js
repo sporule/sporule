@@ -6,6 +6,7 @@ var OfflinePlugin = require('offline-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const Config = require("./_config");
+const MarkdownRSSGeneratorPlugin = require("markdown-rss-generator-webpack-plugin").default;
 
 process.env.NODE_ENV = "development";
 
@@ -99,6 +100,23 @@ module.exports = {
       // both options are optional
       filename: "[name].[contenthash].css",
       chunkFilename: "[id].css"
+    }),
+    new MarkdownRSSGeneratorPlugin({
+      title: Config.site,
+      outputPath: "rss.xml", //rss file output path
+      description: Config.description,
+      link: Config.url,
+      language: "en",
+      image: "https://i.imgur.com/vfh3Une.png",
+      favicon: "https://i.imgur.com/vfh3Une.png",
+      copyright: "All rights reserved 2019, Sporule",
+      updated: new Date(), //updated date
+      generator: "Sporule",
+      author: {
+          name: "Sporule",
+          email: "example@example.com",
+          link: "https://www.sporule.com"
+      },
     }),
     new OfflinePlugin({
       ServiceWorker: {

@@ -17,6 +17,7 @@ export const removeFuturePosts = (posts) => {
     let tempPosts = { ...posts };
     tempPosts.items = tempPosts.items.filter(post => {
         if (post.metas.date && post.metas.date != "null") {
+            console.log("post date",new Date(post.metas.date),new Date());
             return new Date(post.metas.date) <= new Date();
         }
         return false;

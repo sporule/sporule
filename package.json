@@ -1,6 +1,6 @@
 {
   "name": "sporule",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Sporule",
   "scripts": {
     "start": "npx webpack-dev-server --config ./webpack.config.dev.js",
@@ -18,11 +18,12 @@
   "dependencies": {
     "@babel/polyfill": "^7.4.4",
     "disqus-react": "^1.0.7",
-    "markdown-handler": "^0.3.2",
+    "markdown-handler": "^0.3.3",
     "markdown-it": "^9.1.0",
     "markdown-it-for-inline": "^0.1.1",
     "markdown-it-prism": "^2.0.3",
     "markdown-it-toc-and-anchor-with-slugid": "^1.1.4",
+    "markdown-rss-generator-webpack-plugin": "0.0.4",
     "markdown-toc-unlazy": "^1.0.1",
     "object-hash": "^1.3.1",
     "query-string": "^6.8.2",
