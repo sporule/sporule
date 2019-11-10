@@ -164,13 +164,13 @@ module.exports = {
       "theme_color": "#3367D6",
       icons: [
         {
-          src: path.resolve('publish_assets/logo.png'),
+          src: path.resolve('publish_assets/logo-ios.png'),
           sizes: [120, 152, 167, 180, 1024],
           destination: path.join('icons', 'ios'),
           ios: true
         },
         {
-          src: path.resolve('publish_assets/logo.png'),
+          src: path.resolve('publish_assets/logo-ios.png'),
           size: 1024,
           destination: path.join('icons', 'ios'),
           ios: 'startup'
