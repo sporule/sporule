@@ -38,7 +38,8 @@
     "redux-persist": "^5.10.0",
     "redux-thunk": "^2.3.0",
     "remarkable": "^2.0.0",
-    "universal-ga": "^1.2.0"
+    "universal-ga": "^1.2.0",
+    "webpack-pwa-manifest": "^4.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
@@ -67,8 +68,7 @@
     "terser-webpack-plugin": "^1.4.1",
     "webpack": "^4.28.4",
     "webpack-cli": "^3.2.1",
-    "webpack-dev-server": "^3.1.14",
-    "webpack-pwa-manifest": "^4.0.0"
+    "webpack-dev-server": "^3.1.14"
   },
   "repository": {
     "type": "git",
