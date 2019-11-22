@@ -1,6 +1,6 @@
 {
   "name": "sporule",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Sporule",
   "scripts": {
     "start": "npx webpack-dev-server --config ./webpack.config.dev.js",
