@@ -6,6 +6,12 @@
 
 ## Latest Update
 
+### 2019-11-22
+
+- Updated the post refresh function, it can now update the cache by detecting individual post changes
+- Fixed minor bugs
+- Updated the logo
+
 ### 2019-10-04
 
 First Version Released

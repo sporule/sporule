@@ -18,8 +18,7 @@ export default {
     ],
     "categories": [],
     "tags": [],
-    "invalidPage": false,
-    hash: ""
+    "invalidPage": false
   }
 };
 

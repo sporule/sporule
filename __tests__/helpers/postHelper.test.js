@@ -48,7 +48,6 @@ describe("Testing helpers/postHelper.js", () => {
         "categories": [],
         "tags": [],
         "invalidPage": false,
-        hash: ""
     }
     test("getPinnedPosts(): It should only return pinned post", () => {
         let tempPosts = PostHelper.getPinnedPosts(posts);

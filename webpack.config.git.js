@@ -99,7 +99,7 @@ module.exports = {
         use: [{
           loader: 'file-loader',
           options: {
-            name: '[name].[ext]',
+            name: '[name].[hash].[ext]',
             outputPath: 'posts/'
           }
         }]
@@ -171,15 +171,33 @@ module.exports = {
       name: Config.site,
       short_name: Config.site,
       description: Config.description,
+      display: "standalone",
+      start_url: ".",
+      crossorigin: null,
       background_color: '#ffffff',
-      includeDirectory: 'manifest.json',
+      includeDirectory: true,
+      inject: true,
+      ios: true,
       orientation: 'any',
       crossorigin: 'anonymous', //can be null, use-credentials or anonymous
       "theme_color": "#3367D6",
       icons: [
         {
+          src: path.resolve('publish_assets/logo-ios.png'),
+          sizes: [120, 152, 167, 180, 1024],
+          destination: path.join('icons', 'ios'),
+          ios: true
+        },
+        {
+          src: path.resolve('publish_assets/logo-ios.png'),
+          size: 1024,
+          destination: path.join('icons', 'ios'),
+          ios: 'startup'
+        },
+        {
           src: path.resolve('publish_assets/logo.png'),
-          sizes: [96, 128, 192, 256, 384, 512] // multiple sizes
+          sizes: [36, 48, 72, 96, 144, 192, 512],
+          destination: path.join('icons', 'android')
         }
       ],
       ios: {

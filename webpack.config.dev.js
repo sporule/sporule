@@ -58,7 +58,7 @@ module.exports = {
         use: [{
           loader: 'file-loader',
           options: {
-            name: '[name].[ext]',
+            name: '[name].[hash].[ext]',
             outputPath: 'posts/'
           }
         }]
@@ -123,7 +123,7 @@ module.exports = {
         events: true
       },
       responseStrategy: 'cache-first',
-      excludes: ['**/.*', '**/*.map', '**/*.gz', '**/*.txt', '**/sw.js', '**/*.md', '**/_redirects', '**/*.jpg', '**/*.png', '**/*.gif'],
+      excludes: ['**/.*', '**/*.map', '**/*.gz'],
       autoUpdate: 1000 * 60 * 2,
       externals: [
         'https://cdn.jsdelivr.net/npm/pwacompat@2.0.7/pwacompat.min.js',

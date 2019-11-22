@@ -19,6 +19,7 @@ import "prismjs/components/prism-go";
 import "../styles/prism.css";
 import iterator from 'markdown-it-for-inline';
 import { Helmet } from "react-helmet";
+import * as Utility from "../helpers/utility";
 
 class Post extends React.Component {
     constructor(props, context) {
@@ -44,10 +45,8 @@ class Post extends React.Component {
     }
 
     componentDidMount() {
-        let path = "/posts/" + this.props.match.params.path + ".md";
-        if (process.env.ROUTE) {
-            let path = process.env.ROUTE + path;
-        }
+        //map query string path to the local markdown path
+        let path = Utility.getAllPostsPath().filter(o=>o.includes(this.props.match.params.path))[0];
         if (Config.alwaysRefreshPost) {
             //always refresh the posts
             this.refreshPost(path);

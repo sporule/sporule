@@ -37,11 +37,10 @@ export const sortPost = (posts, isDesc = true) => {
 export const addLink = (posts) => {
     let tempPosts = { ...posts };
     tempPosts.items = tempPosts.items.map(o => {
-        o.link = o.path.replace(".md", "").replace("posts", "items");
+        o.link = o.path.replace(".md", "").replace("posts", "items").split(".")[0];
         if (process.env.ROUTE) {
             o.link = Config.gh_custom_domain ? o.link.replace(process.env.ROUTE, "") : "/" + process.env.REPO + o.link.replace(process.env.ROUTE, "")
         }
-
         return o;
     })
     return tempPosts;
