@@ -85,9 +85,11 @@ class Page extends React.Component {
             const pinnedPosts = PostHelper.getPinnedPosts(this.props.posts);
             const posts = PostHelper.getPostsByPage(this.props.posts, this.page, true, this.searchString, this.categories, this.tags, this.excludedTags);
             if ((posts.length <= 0 && this.props.posts.length > 0) || posts.invalidPage) {
-                //reset filters if there is no posts
-                window.location.href = "/";
-                return null;
+                if (!window.location.origin.includes('webcache')) {
+                    //reset filters if there is no posts
+                    window.location.href = window.location.origin;
+                    return null;
+                }
             }
             var prev;
             var next;

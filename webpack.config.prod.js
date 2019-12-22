@@ -134,7 +134,7 @@ module.exports = {
         events: true
       },
       responseStrategy: 'cache-first',
-      excludes: ['**/.*', '**/*.map', '**/*.gz', '**/*.xml', '**/*.txt', '**/sw.js', '**/*.md', '**/_redirects', '**/*.jpg', '**/*.png', '**/*.gif'],
+      excludes: ['**/.*', '**/*.map', '**/*.gz', '**/*.xml', '**/*.txt'],
       autoUpdate: 1000 * 60 * 60 * 10,
       externals: [
         'https://cdn.jsdelivr.net/npm/pwacompat@2.0.7/pwacompat.min.js',
