@@ -58,6 +58,15 @@ class Page extends React.Component {
                 "invalidPage": false
             }
         };
+    }
+
+
+    toPage = (page) => {
+        window.location.href = window.location.pathname + "?page=" + page;
+    }
+
+    render() {
+        // get parameters
         const categoriesString = this.props.match.params.categories;
         const tagsString = queryString.parse(this.props.location.search).tags;
         const excludedTagsString = queryString.parse(this.props.location.search).extags;
@@ -67,15 +76,6 @@ class Page extends React.Component {
         this.excludedTags = excludedTagsString ? excludedTagsString.split(",") : [];
         this.searchString = queryString.parse(this.props.location.search).search || "";
 
-
-    }
-
-
-    toPage = (page) => {
-        window.location.href = window.location.pathname + "?page=" + page;
-    }
-
-    render() {
         let pageName = this.props.match.params.page || "home";
         let Page = CustomPages[pageName.toLowerCase()];
         if (!Page) {
