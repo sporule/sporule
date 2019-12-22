@@ -131,7 +131,7 @@ You will need to fork one of the template you want to use.
 
 Credits to [this page](https://gist.github.com/myusuf3/7f645819ded92bda6677)
 
-- Delete the .gitmodules file
+- Delete everything in the .gitmodules file
 - Delete the template folder
 - Delete the section of [submodule "template"] in .git/config file
 - Run git rm --cached template
