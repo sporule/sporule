@@ -153,7 +153,7 @@ module.exports = {
     new webpack.DefinePlugin(GLOBALS),
     new OfflinePlugin({
       responseStrategy: 'cache-first',
-      excludes: ['**/.*', '**/*.map', '**/*.gz', '**/*.txt', '**/sw.js', '**/*.md', '**/_redirects', '**/*.jpg', '**/*.png', '**/*.gif', "**/CNAME"],
+      excludes: ['**/.*', '**/*.map', '**/*.gz', '**/*.txt', '**/sw.js', '**/_redirects', '**/*.jpg', '**/*.png', '**/*.gif', '**/*.jpeg', "**/CNAME",'**/*.xml', '**/*.txt'],
       autoUpdate: 1000 * 60 * 60 * 10,
       externals: [
         'https://cdn.jsdelivr.net/npm/pwacompat@2.0.7/pwacompat.min.js',

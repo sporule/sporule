@@ -20,6 +20,7 @@ import "../styles/prism.css";
 import iterator from 'markdown-it-for-inline';
 import { Helmet } from "react-helmet";
 import * as Utility from "../helpers/utility";
+import { CircleArrow as ScrollUpButton } from "react-scroll-up-button";
 
 class Post extends React.Component {
     constructor(props, context) {
@@ -140,6 +141,7 @@ class Post extends React.Component {
                     <meta charSet="utf-8" />
                     <title>{Config.site} - {this.state.post.title.toUpperCase()}</title>
                 </Helmet>
+                <div><ScrollUpButton /></div>
                 <PostTemplate toc={renderHTML(this.state.toc)} post={this.state.post} content={renderHTML(this.state.post.html)} disqus={<Disqus.DiscussionEmbed shortname={disqusShortname} config={disqusConfig} />} />
             </React.Fragment>
         );
