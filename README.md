@@ -6,6 +6,12 @@
 
 ## Latest Update
 
+### 2020-04-12
+
+- Fixed minor post generator bugs
+- Added RSS for markdown file(beta)
+
+
 ### 2019-11-22
 
 - Updated the post refresh function, it can now update the cache by detecting individual post changes
