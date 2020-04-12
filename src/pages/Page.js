@@ -8,7 +8,12 @@ import { Helmet } from "react-helmet";
 import Config from "../../_config";
 import CustomPages from "../../template/customPages";
 import { CircleArrow as ScrollUpButton } from "react-scroll-up-button";
+import { lazyload } from 'react-lazyload';
 
+@lazyload({
+    height: 1000,
+    offset: 1000
+})
 class Page extends React.Component {
     constructor(props, context) {
         super(props, context);

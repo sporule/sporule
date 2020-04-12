@@ -21,7 +21,12 @@ import iterator from 'markdown-it-for-inline';
 import { Helmet } from "react-helmet";
 import * as Utility from "../helpers/utility";
 import { CircleArrow as ScrollUpButton } from "react-scroll-up-button";
+import { lazyload } from 'react-lazyload';
 
+@lazyload({
+    height: 1000,
+    offset: 1000
+})
 class Post extends React.Component {
     constructor(props, context) {
         super(props, context);
