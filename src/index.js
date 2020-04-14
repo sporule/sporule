@@ -35,7 +35,7 @@ else if ('serviceWorker' in navigator) {
 setTimeout(() => {
     //initial load
     const states = store.getState();
-    if (states.posts.items[0].title != "") {
+    if (states.posts.items[0].title == "") {
         store.dispatch(PostAction.loadPosts());
     }
 }, 1000)
