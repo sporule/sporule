@@ -7,6 +7,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import * as PostAction from "./actions/PostAction";
 import App from './pages/App';
 import "./styles/styles.css";
+import "pwacompat";
 
 export const { store, persistor } = configureStore(initialState);
 
