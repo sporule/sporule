@@ -1,7 +1,6 @@
 import React from 'react';
 import Main from '../router/Main';
 
-
 class App extends React.Component {
     constructor(props, context) {
         super(props, context);
@@ -9,7 +8,9 @@ class App extends React.Component {
 
     render() {
         return (
+            <React.Fragment>
                 <Main />
+            </React.Fragment>
         );
     }
 }

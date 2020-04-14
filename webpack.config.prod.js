@@ -4,14 +4,15 @@ const WebpackPwaManifest = require('webpack-pwa-manifest');
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const OfflinePlugin = require('offline-plugin');
 const TerserJSPlugin = require('terser-webpack-plugin');
 const RobotstxtPlugin = require("robotstxt-webpack-plugin");
 const CopyPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const SitemapPlugin = require('sitemap-webpack-plugin').default;
 const Config = require("./_config");
 const MarkdownRSSGeneratorPlugin = require("markdown-rss-generator-webpack-plugin").default;
+const MarkdownToJS = require("markdown-to-js-webpack-plugin").default;
+const MarkdownSiteMapGeneratorPlugin = require("markdown-sitemap-generator-webpack-plugin").default;
+const { GenerateSW } = require('workbox-webpack-plugin');
 
 module.exports = {
   mode: "production",
@@ -21,9 +22,6 @@ module.exports = {
   ],
   mode: "production",
   target: 'web',
-  externals: {
-    "jquery": "jQuery"
-  },
   output: {
     path: __dirname + '/dist',
     publicPath: '/',
@@ -34,6 +32,15 @@ module.exports = {
   },
   optimization: {
     minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})],
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all'
+        }
+      }
+    }
   },
   node: {
     fs: 'empty'
@@ -79,11 +86,17 @@ module.exports = {
     ]
   },
   plugins: [
+    new MarkdownSiteMapGeneratorPlugin({
+      host: Config.url,
+      links: [],
+      route: "/items",
+      outputPath:"sitemap.txt"
+    }),
     new CopyPlugin(
       [
         {
           context: __dirname + '/src',
-          from: '_redirects',
+          from: 'netlify.toml',
           to: '',
         },
         {
@@ -93,24 +106,21 @@ module.exports = {
         }
       ]
     ),
-    new SitemapPlugin(Config.url, [
-      "/"
-    ]),
     new MarkdownRSSGeneratorPlugin({
       title: Config.site,
       outputPath: "rss.xml", //rss file output path
       description: Config.description,
       link: Config.url,
-      language: "en",
-      image: "https://i.imgur.com/vfh3Une.png",
-      favicon: "https://i.imgur.com/vfh3Une.png",
-      copyright: "All rights reserved 2019, Sporule",
+      language: Config.language,
+      image: Config.logo,
+      favicon: Config.logo,
+      copyright: "All rights reserved " + new Date().getFullYear() + " " + Config.site,
       updated: new Date(), //updated date
       generator: "Sporule",
       author: {
-        name: "Sporule",
-        email: "example@example.com",
-        link: "https://www.sporule.com"
+        name: Config.site,
+        email: Config.email,
+        link: Config.url
       },
     }),
     new RobotstxtPlugin({
@@ -120,7 +130,7 @@ module.exports = {
           allow: "/"
         }
       ],
-      sitemap: Config.url + "/sitemap.xml",
+      sitemap: Config.url + "/sitemap.txt",
       host: Config.url
     }),
     new CleanWebpackPlugin(),
@@ -129,24 +139,23 @@ module.exports = {
       templateParameters: Config
     }),
     new webpack.optimize.OccurrenceOrderPlugin(),
-    new OfflinePlugin({
-      ServiceWorker: {
-        events: true
-      },
-      responseStrategy: 'cache-first',
-      excludes: ['**/.*', '**/*.map', '**/*.gz', '**/*.txt', '**/sw.js', '**/_redirects', '**/*.jpg', '**/*.png', '**/*.gif', '**/*.jpeg', "**/CNAME",'**/*.xml', '**/*.txt'],
-      autoUpdate: 1000 * 60 * 60 * 10,
-      externals: [
-        'https://cdn.jsdelivr.net/npm/pwacompat@2.0.7/pwacompat.min.js',
-        'https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.slim.min.js',
-        'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js'
-      ],
-    }),
+    new webpack.optimize.ModuleConcatenationPlugin(),
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // both options are optional
       filename: "[name].[contenthash].css",
       chunkFilename: "[id].css"
+    }),
+    new MarkdownToJS(),
+    new GenerateSW({
+      maximumFileSizeToCacheInBytes: 1e+7,
+      skipWaiting: true,
+      runtimeCaching: [{
+        urlPattern: new RegExp('/\.(js|css)$/i'),
+        handler: 'StaleWhileRevalidate'
+      }],
+      exclude: [/\.(md|png|jpe?g|gif|xml|toml|txt|gz)$/i, /CNAME/i],
+      swDest: 'sw.js'
     }),
     new WebpackPwaManifest({
       name: Config.site,

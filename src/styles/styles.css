@@ -1,3 +1,7 @@
 h1{
     text-transform: capitalize;
 }
+
+.pwa-logo{
+    width: 8em;
+}

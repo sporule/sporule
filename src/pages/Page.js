@@ -8,6 +8,7 @@ import { Helmet } from "react-helmet";
 import Config from "../../_config";
 import CustomPages from "../../template/customPages";
 import { CircleArrow as ScrollUpButton } from "react-scroll-up-button";
+import {withRouter} from 'react-router'
 
 class Page extends React.Component {
     constructor(props, context) {
@@ -63,11 +64,11 @@ class Page extends React.Component {
 
 
     toPage = (page) => {
-        window.location.href = window.location.pathname + "?page=" + page;
+        let link = window.location.pathname + "?page=" + page;
+        this.props.history.push(link);
     }
 
     render() {
-        console.log("this is the latest")
         // get parameters
         const categoriesString = this.props.match.params.categories;
         const tagsString = queryString.parse(this.props.location.search).tags;
@@ -81,7 +82,7 @@ class Page extends React.Component {
         let pageName = this.props.match.params.page || "home";
         let Page = CustomPages[pageName.toLowerCase()];
         if (!Page) {
-            window.location.href = window.location.origin;
+            window.location.href = Config.url;
         }
         else {
             const pinnedPosts = PostHelper.getPinnedPosts(this.props.posts);
@@ -89,7 +90,7 @@ class Page extends React.Component {
             if ((posts.length <= 0 && this.props.posts.length > 0) || posts.invalidPage) {
                 if (!window.location.origin.includes('webcache')) {
                     //reset filters if there is no posts
-                    window.location.href = window.location.origin;
+                    window.location.href = Config.url;
                     return null;
                 }
             }
@@ -132,4 +133,4 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Page);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Page));

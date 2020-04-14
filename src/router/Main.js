@@ -6,6 +6,7 @@ import Post from '../pages/Post';
 import Nav from "../pages/Nav";
 import ScriptsTemplate from "../../template/scripts";
 import Footer from "../pages/Footer";
+import Config from "../../_config";
 
 
 

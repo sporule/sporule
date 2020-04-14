@@ -3,6 +3,7 @@ import NavTemplate from "../../template/nav";
 import { connect } from "react-redux";
 import Config from "../../_config";
 import analytics from 'universal-ga';
+import AddToHomeScreen from "a2hs.js";
 
 
 class Nav extends React.Component {
@@ -16,6 +17,10 @@ class Nav extends React.Component {
             analytics.pageview(window.location.pathname);
             analytics.ecSend();
         }
+        AddToHomeScreen({
+            brandName:Config.site,
+            logoImage:"<img class='pwa-logo' src="+Config.logo+" />"
+        });
     }
 
     render() {

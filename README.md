@@ -6,6 +6,14 @@
 
 ## Latest Update
 
+
+### 2020-04-14
+
+- Updated RSS Generator to support HTML output
+- Added Site Map Generator
+- Updated PWA mechanism
+
+
 ### 2020-04-12
 
 - Fixed minor post generator bugs
@@ -27,10 +35,13 @@ First Version Released
 - Easy to use, create your blog in less than 10 minutes.
 - Pure front end + Markdown, no server side code.
 - Multi-platform support - github pages, netlify and any other cloud platform.
-- Progressive Web App Support Ready, it can be added to iPhone or Android as an app. All posts can be cahced.
+- Progressive Web App Support Ready, it can be added to iPhone or Android as an app. All posts can be cached.
 - Theme system which means you can switch to the themes you like through github submodules.
-- Seperating the site and the content as it renders the markdown on the fly.
+- Separate the site and the content as it renders the markdown on the fly.
 - Rich meta data through Front Matter.
+- Support Draft posts by setting the post date to empty
+- Support Future posts by setting the post date to future
+- Generate RSS and Site Map in Build Time (It will not show future posts until rebuilding the code)
 
 ## Credits To
 
