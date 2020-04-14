@@ -7,7 +7,7 @@ const Config = {
     logo: "https://i.imgur.com/1UDpSHj.png",
     disqusShortname: "yourdisqusshortname",
     postPerPage: 8,
-    email: "email@" + this.url,
+    email: "email@example.com",
     language:'en',
     internalLinkNames: ["sporule"],
     googleAnaltics: "",
