@@ -86,12 +86,6 @@ module.exports = {
     ]
   },
   plugins: [
-    new MarkdownSiteMapGeneratorPlugin({
-      host: Config.url,
-      links: [],
-      route: "/items",
-      outputPath:"sitemap.txt"
-    }),
     new CopyPlugin(
       [
         {
@@ -106,6 +100,12 @@ module.exports = {
         }
       ]
     ),
+    new MarkdownSiteMapGeneratorPlugin({
+      host: Config.url,
+      links: [],
+      route: "/items",
+      outputPath: "sitemap.txt"
+    }),
     new MarkdownRSSGeneratorPlugin({
       title: Config.site,
       outputPath: "rss.xml", //rss file output path

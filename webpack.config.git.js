@@ -12,7 +12,7 @@ const Config = require("./_config");
 const MarkdownRSSGeneratorPlugin = require("markdown-rss-generator-webpack-plugin").default;
 const MarkdownToJS = require("markdown-to-js-webpack-plugin").default;
 const MarkdownSiteMapGeneratorPlugin = require("markdown-sitemap-generator-webpack-plugin").default;
-const {GenerateSW} = require('workbox-webpack-plugin');
+const { GenerateSW } = require('workbox-webpack-plugin');
 
 let route = "https://raw.githubusercontent.com/" + process.env.GITHUB_REPOSITORY + "/gh-pages/";
 let repo = process.env.GITHUB_REPOSITORY.split("/")[1];
@@ -130,6 +130,12 @@ module.exports = {
         }
       ]
     ),
+    new MarkdownSiteMapGeneratorPlugin({
+      host: Config.url,
+      links: [],
+      route: "/items",
+      outputPath: "sitemap.txt"
+    }),
     new MarkdownRSSGeneratorPlugin({
       title: Config.site,
       outputPath: "rss.xml", //rss file output path
@@ -165,14 +171,14 @@ module.exports = {
     new webpack.DefinePlugin(GLOBALS),
     new MarkdownToJS(),
     new GenerateSW({
-      maximumFileSizeToCacheInBytes:1e+7,
-      skipWaiting:true,
+      maximumFileSizeToCacheInBytes: 1e+7,
+      skipWaiting: true,
       runtimeCaching: [{
         urlPattern: new RegExp('/\.(js|css)$/i'),
         handler: 'StaleWhileRevalidate'
       }],
-      exclude: [/\.(md|png|jpe?g|gif|xml|toml|txt|gz)$/i,/CNAME/i],
-      swDest:'sw.js'
+      exclude: [/\.(md|png|jpe?g|gif|xml|toml|txt|gz)$/i, /CNAME/i],
+      swDest: 'sw.js'
     }),
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
