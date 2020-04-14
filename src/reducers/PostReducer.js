@@ -8,7 +8,26 @@ export function posts(state = InitialState.posts, action) {
         case types.LOAD_POSTS_SUCCESS:
             return action.Posts;
         case types.CLEAR_POSTS_SUCCESS:
-            return {};
+            return {
+                "items": [
+                    {
+                        "title": "",
+                        "metas": {
+                            "categories": [],
+                            "tags": [],
+                            "date": "",
+                            "coverimage": ""
+                        },
+                        "link": "",
+                        "content": "",
+                        "excerpt": "",
+                        "path": ""
+                    }
+                ],
+                "categories": [],
+                "tags": [],
+                "invalidPage": false
+            };
         default:
             return state;
     }
