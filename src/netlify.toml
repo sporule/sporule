@@ -1,4 +1,10 @@
 [[redirects]]
+  from = "/tag/:tag"
+  to = "/?tags=:tag"
+  status = 301
+
+
+[[redirects]]
   from = "/feed"
   to = "/rss.xml"
   status = 200
