@@ -78,6 +78,10 @@ class Page extends React.Component {
         }
     }
 
+    componentDidMount() {
+        Utility.scrollToTop();
+    }
+
     componentDidUpdate() {
         Utility.scrollToTop();
     }
