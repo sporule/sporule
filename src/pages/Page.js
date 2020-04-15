@@ -8,7 +8,7 @@ import { Helmet } from "react-helmet";
 import Config from "../../_config";
 import CustomPages from "../../template/customPages";
 import { CircleArrow as ScrollUpButton } from "react-scroll-up-button";
-import {withRouter} from 'react-router'
+import { withRouter } from 'react-router'
 
 class Page extends React.Component {
     constructor(props, context) {
@@ -68,6 +68,16 @@ class Page extends React.Component {
         this.props.history.push(link);
     }
 
+    searchAction = (search_route) => {
+        event.preventDefault();
+        for (var i = 0; i <= 50; i++) {
+            if (event.target[i].name == "search") {
+                this.props.history.push(search_route + "&search=" + event.target[i].value);
+                break;
+            }
+        }
+    }
+
     render() {
         // get parameters
         const categoriesString = this.props.match.params.categories;
@@ -112,7 +122,7 @@ class Page extends React.Component {
                         <title>{Config.site} - {Page.title}</title>
                     </Helmet>
                     <div><ScrollUpButton /></div>
-                    <Page.component posts={posts} categories={this.categories} tags={this.tags} exTags={this.excludedTags} prev={prev} next={next} pinned={pinnedPosts} />
+                    <Page.component posts={posts} categories={this.categories} tags={this.tags} exTags={this.excludedTags} prev={prev} next={next} pinned={pinnedPosts} searchAction={searchAction}/>
                 </React.Fragment>
             )
         }
