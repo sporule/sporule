@@ -20,6 +20,7 @@ import "../styles/prism.css";
 import iterator from 'markdown-it-for-inline';
 import { Helmet } from "react-helmet";
 import * as Utility from "../helpers/utility";
+import { withRouter } from 'react-router'
 
 class Post extends React.Component {
     constructor(props, context) {
@@ -86,12 +87,14 @@ class Post extends React.Component {
                     });
                 }
                 else {
-                    window.location.href = Config.url;
+                    this.props.history.push("/redirect/404/");
+                    return null;
                 }
             })
         }
         else {
-            window.location.href = Config.url;
+            this.props.history.push("/redirect/404/");
+            return null;
         }
     }
 
@@ -172,4 +175,4 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Post);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Post));

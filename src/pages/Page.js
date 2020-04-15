@@ -100,7 +100,8 @@ class Page extends React.Component {
         let pageName = this.props.match.params.page || "home";
         let Page = CustomPages[pageName.toLowerCase()];
         if (!Page) {
-            window.location.href = Config.url;
+            this.props.history.push("/redirect/404/");
+            return null;
         }
         else {
             const pinnedPosts = PostHelper.getPinnedPosts(this.props.posts);

@@ -6,7 +6,8 @@ import Post from '../pages/Post';
 import Nav from "../pages/Nav";
 import ScriptsTemplate from "../../template/scripts";
 import Footer from "../pages/Footer";
-import Config from "../../_config";
+import Page404 from "../pages/Page404";
+import Redirector from "../pages/Redirector";
 
 
 
@@ -24,12 +25,13 @@ class Main extends React.Component {
                 <Nav />
                 <Switch>
                     <Route exact path="/" component={Page} />
+                    <Route path="/404/" component={Page404} />
+                    <Route exact path="/redirect/404/" component={Page404} />
                     <Route exact path="/categories/:categories" component={Page} />
                     <Route exact path="/items/:path" component={Post} />
-                    <Route exact path="/:page/" component={Page} />
-                    <Route exact path="/:page/:options" component={Page} />
                     <Route exact path="/:page/categories/:categories" component={Page} />
-                    <Route component={Page} />
+                    <Route path="/:page/" component={Page} />
+                    <Route component={Page404} />
                 </Switch>
                 <Footer />
                 <ScriptsTemplate />
