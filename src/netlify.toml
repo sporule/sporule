@@ -1,9 +1,3 @@
-
-[[redirects]]
-  from = "/redirect/404/"
-  to = "/404/"
-  status = 404
-
 [[redirects]]
   from = "/tag/:tag"
   to = "/posts/?tags=:tag"

@@ -87,13 +87,13 @@ class Post extends React.Component {
                     });
                 }
                 else {
-                    window.location.href=Config.url+"/redirect/404/";
+                    this.props.history.push("/404/") ;
                     return null;
                 }
             })
         }
         else {
-            window.location.href=Config.url+"/redirect/404/";
+            this.props.history.push("/404/") ;
             return null;
         }
     }

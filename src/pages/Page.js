@@ -100,7 +100,7 @@ class Page extends React.Component {
         let pageName = this.props.match.params.page || "home";
         let Page = CustomPages[pageName.toLowerCase()];
         if (!Page) {
-            window.location.href=Config.url+"/redirect/404/";
+            this.props.history.push("/404/") ;
             return null;
         }
         else {

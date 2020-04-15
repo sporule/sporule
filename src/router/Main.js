@@ -26,7 +26,6 @@ class Main extends React.Component {
                 <Switch>
                     <Route exact path="/" component={Page} />
                     <Route path="/404/" component={Page404} />
-                    <Route exact path="/redirect/404/" component={Page404} />
                     <Route exact path="/categories/:categories" component={Page} />
                     <Route exact path="/items/:path" component={Post} />
                     <Route exact path="/:page/categories/:categories" component={Page} />
