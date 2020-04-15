@@ -122,7 +122,7 @@ class Page extends React.Component {
                         <title>{Config.site} - {Page.title}</title>
                     </Helmet>
                     <div><ScrollUpButton /></div>
-                    <Page.component posts={posts} categories={this.categories} tags={this.tags} exTags={this.excludedTags} prev={prev} next={next} pinned={pinnedPosts} searchAction={searchAction}/>
+                    <Page.component posts={posts} categories={this.categories} tags={this.tags} exTags={this.excludedTags} prev={prev} next={next} pinned={pinnedPosts} searchAction={this.searchAction}/>
                 </React.Fragment>
             )
         }

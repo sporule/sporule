@@ -34,7 +34,7 @@ class Nav extends React.Component {
     }
 
     render() {
-        return <NavTemplate searchAction={searchAction} categories={this.props.posts.categories} />
+        return <NavTemplate searchAction={this.searchAction} categories={this.props.posts.categories} />
     }
 }
 
