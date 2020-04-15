@@ -19,8 +19,8 @@ class Nav extends React.Component {
             analytics.ecSend();
         }
         AddToHomeScreen({
-            brandName:Config.site,
-            logoImage:"<img class='pwa-logo' src="+Config.logo+" />"
+            brandName: Config.site,
+            logoImage: "<img class='pwa-logo' src=" + Config.logo + " />"
         });
     }
 
@@ -35,8 +35,12 @@ class Nav extends React.Component {
     }
 
     render() {
-        <div><ScrollUpButton /></div>
-        return <NavTemplate searchAction={this.searchAction} categories={this.props.posts.categories} />
+        return (
+            <React.Fragment>
+                <div><ScrollUpButton /></div>
+                <NavTemplate searchAction={this.searchAction} categories={this.props.posts.categories} />
+            </React.Fragment>
+        )
     }
 }
 
