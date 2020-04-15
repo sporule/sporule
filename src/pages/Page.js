@@ -78,8 +78,11 @@ class Page extends React.Component {
         }
     }
 
-    render() {
+    componentDidUpdate() {
         Utility.scrollToTop();
+    }
+
+    render() {
         // get parameters
         const categoriesString = this.props.match.params.categories;
         const tagsString = queryString.parse(this.props.location.search).tags;
