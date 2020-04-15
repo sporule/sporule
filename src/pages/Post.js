@@ -50,7 +50,7 @@ class Post extends React.Component {
 
     componentDidMount() {
         //map query string path to the local markdown path
-        let path = Utility.getAllPostsPath().filter(o => o.includes(this.props.match.params.path))[0];
+        let path = Utility.getAllPostsPath().filter(o => o.includes(this.props.match.params.path))[0] || "empty";
         if (Config.alwaysRefreshPost) {
             //always refresh the posts
             this.refreshPost(path);
@@ -76,18 +76,23 @@ class Post extends React.Component {
     }
 
     refreshPost = (path) => {
-        let resources = new PostResources();
-        resources.getAll([path]).then(posts => {
-            if (posts != null && posts !== undefined && posts.items.length > 0) {
-                let post = this.stylePost(posts.items[0]);
-                this.setState(() => {
-                    return { "post": post };
-                });
-            }
-            else {
-                window.location.href = "/";
-            }
-        })
+        if (path.includes(".md")) {
+            let resources = new PostResources();
+            resources.getAll([path]).then(posts => {
+                if (posts != null && posts !== undefined && posts.items.length > 0) {
+                    let post = this.stylePost(posts.items[0]);
+                    this.setState(() => {
+                        return { "post": post };
+                    });
+                }
+                else {
+                    window.location.href = Config.url;
+                }
+            })
+        }
+        else {
+            window.location.href = Config.url;
+        }
     }
 
     stylePost = (post) => {
@@ -123,7 +128,7 @@ class Post extends React.Component {
             }
             var aIndex = tokens[idx].attrIndex('rel');
             let link = tokens[idx].attrs[tokens[idx].attrIndex('href')][1];
-            if (Config.internalLinkNames.filter(n=>link.includes(n)).length<=0) {
+            if (Config.internalLinkNames.filter(n => link.includes(n)).length <= 0) {
                 if (aIndex < 0) {
                     tokens[idx].attrPush(['rel', 'nofollow noopener noreferrer']);
                 } else {
