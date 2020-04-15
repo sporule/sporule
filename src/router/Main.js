@@ -29,6 +29,7 @@ class Main extends React.Component {
                     <Route exact path="/:page/" component={Page} />
                     <Route exact path="/:page/:options" component={Page} />
                     <Route exact path="/:page/categories/:categories" component={Page} />
+                    <Route component={Page} />
                 </Switch>
                 <Footer />
                 <ScriptsTemplate />
