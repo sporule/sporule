@@ -46,6 +46,7 @@ class Post extends React.Component {
     }
 
     componentDidMount() {
+        Utility.scrollToTop();
         //map query string path to the local markdown path
         let path = Utility.getAllPostsPath().filter(o => o.includes(this.props.match.params.path))[0];
         if (Config.alwaysRefreshPost) {
