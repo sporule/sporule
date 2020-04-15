@@ -5,6 +5,7 @@ import Config from "../../_config";
 import analytics from 'universal-ga';
 import AddToHomeScreen from "a2hs.js";
 import { withRouter } from 'react-router';
+import { CircleArrow as ScrollUpButton } from "react-scroll-up-button";
 
 class Nav extends React.Component {
     constructor(props, context) {
@@ -34,6 +35,7 @@ class Nav extends React.Component {
     }
 
     render() {
+        <div><ScrollUpButton /></div>
         return <NavTemplate searchAction={this.searchAction} categories={this.props.posts.categories} />
     }
 }

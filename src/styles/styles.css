@@ -5,7 +5,3 @@ h1{
 .pwa-logo{
     width: 8em;
 }
-
-html {
-    scroll-behavior: smooth;
-}
