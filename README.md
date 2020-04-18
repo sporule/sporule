@@ -6,6 +6,9 @@
 
 ## Latest Update
 
+### 2020-04-18
+
+- Fixed the bug that articles do not update due to the cache of md.js. Now md.js is removed from sw.js
 
 ### 2020-04-14
 
