@@ -151,7 +151,8 @@ module.exports = {
       maximumFileSizeToCacheInBytes: 1e+7,
       skipWaiting: true,
       runtimeCaching: [{
-        urlPattern: new RegExp('/\.(js|css)$/i'),
+        // urlPattern: new RegExp('/\.(js|css)$/i'),
+        urlPattern: new RegExp('/\.(js|css|png|jpe?g|gif|svg)$/i'),
         handler: 'StaleWhileRevalidate'
       }],
       // exclude: [/\.(md|png|jpe?g|gif|xml|toml|txt|gz)$/i, /CNAME/i,/md\.js/i],
