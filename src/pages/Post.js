@@ -87,13 +87,13 @@ class Post extends React.Component {
                     });
                 }
                 else {
-                    this.props.history.push("/404/") ;
+                    this.props.history.push("/404/");
                     return null;
                 }
             })
         }
         else {
-            this.props.history.push("/404/") ;
+            this.props.history.push("/404/");
             return null;
         }
     }
@@ -138,7 +138,7 @@ class Post extends React.Component {
                     tokens[idx].attrs[aIndex][1] = 'nofollow noopener noreferrer';
                 }
             }
-        }).render(post.content);
+        }).render(post.content).replace('<table>', '<div class="auto-overflow"><table>').replace('</table>', '</table></div>');
         return post;
     }
 
