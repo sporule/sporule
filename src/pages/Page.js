@@ -124,7 +124,7 @@ class Page extends React.Component {
                         <title>{Config.site} - {Page.title}</title>
                         <meta name="description" content={Page.description || Page.title} />
                     </Helmet>
-                    <Page.component posts={posts} categories={this.categories} tags={this.tags} exTags={this.excludedTags} prev={prev} next={next} pinned={pinnedPosts} searchAction={this.searchAction} />
+                    <Page.component posts={posts} categories={this.categories} tags={this.tags} exTags={this.excludedTags} prev={prev} next={next} pinnedPosts={pinnedPosts} searchAction={this.searchAction} />
                 </React.Fragment>
             )
         }
