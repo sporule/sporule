@@ -10,6 +10,7 @@
 
 - Fixed the responsive problem of the table
 - Fixed the react render error messages for rendering table with line change character
+- Updated Search Function to full text, tags, category and title search
 
 
 ### 2020-04-18

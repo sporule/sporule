@@ -93,7 +93,7 @@ export const getPostsByPage = (posts, page, excludePinned, searchString, categor
 export const postsFilter = (posts, excludePinned, searchString, categories, tags, excludedTags) => {
     let tempPosts = { ...posts };
     if (searchString) {
-        tempPosts.items = tempPosts.items.filter(o => o.title.includes(searchString));
+        tempPosts.items = tempPosts.items.filter(o => JSON.stringify(o).includes(searchString));
     }
     if (excludePinned) {
         tempPosts.items = tempPosts.items.filter(o => {
