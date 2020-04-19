@@ -138,7 +138,22 @@ class Post extends React.Component {
                     tokens[idx].attrs[aIndex][1] = 'nofollow noopener noreferrer';
                 }
             }
-        }).render(post.content).replace('<table>', '<div class="auto-overflow"><table>').replace('</table>', '</table></div>').split("\n").join("");
+        }).render(post.content).replace(/\<table\>/g, '<div class="auto-overflow">\n<table>').replace(/\<\/table\>/g, '</table>\n</div>').split("\n");
+        //remove spaces inside table tags, otherwise react will raise error
+        post.html = "";
+        let new_line_flag = true;
+        for (var index in html) {
+            if (html[index] == "<table>") {
+                new_line_flag = false;
+            }
+            if (html[index] == "</table>") {
+                new_line_flag = true;
+            }
+            post.html += html[index];
+            if (new_line_flag) {
+                post.html += "\n";
+            }
+        }
         return post;
     }
 
