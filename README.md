@@ -6,6 +6,12 @@
 
 ## Latest Update
 
+### 2020-04-19
+
+- Fixed the responsive problem of the table
+- Fixed the react render error messages for rendering table with line change character
+
+
 ### 2020-04-18
 
 - Fixed the bug that articles do not update due to the cache of md.js. Now md.js is removed from sw.js

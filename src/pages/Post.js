@@ -138,7 +138,7 @@ class Post extends React.Component {
                     tokens[idx].attrs[aIndex][1] = 'nofollow noopener noreferrer';
                 }
             }
-        }).render(post.content).replace('<table>', '<div class="auto-overflow"><table>').replace('</table>', '</table></div>');
+        }).render(post.content).replace('<table>', '<div class="auto-overflow"><table>').replace('</table>', '</table></div>').split("\n").join("");
         return post;
     }
 
