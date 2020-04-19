@@ -152,8 +152,8 @@ class Post extends React.Component {
         return (
             <React.Fragment>
                 <Helmet>
-                    <meta charSet="utf-8" />
                     <title>{Config.site} - {this.state.post.title.toUpperCase()}</title>
+                    <meta name="description" content={this.state.post.excerpt} />
                 </Helmet>
                 <PostTemplate toc={renderHTML(this.state.toc)} post={this.state.post} content={renderHTML(this.state.post.html)} disqus={<Disqus.DiscussionEmbed shortname={disqusShortname} config={disqusConfig} />} />
             </React.Fragment>

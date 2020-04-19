@@ -100,7 +100,7 @@ class Page extends React.Component {
         let pageName = this.props.match.params.page || "home";
         let Page = CustomPages[pageName.toLowerCase()];
         if (!Page) {
-            this.props.history.push("/404/") ;
+            this.props.history.push("/404/");
             return null;
         }
         else {
@@ -122,8 +122,9 @@ class Page extends React.Component {
                 <React.Fragment>
                     <Helmet>
                         <title>{Config.site} - {Page.title}</title>
+                        <meta name="description" content={Page.description ?? Page.title} />
                     </Helmet>
-                    <Page.component posts={posts} categories={this.categories} tags={this.tags} exTags={this.excludedTags} prev={prev} next={next} pinned={pinnedPosts} searchAction={this.searchAction}/>
+                    <Page.component posts={posts} categories={this.categories} tags={this.tags} exTags={this.excludedTags} prev={prev} next={next} pinned={pinnedPosts} searchAction={this.searchAction} />
                 </React.Fragment>
             )
         }
