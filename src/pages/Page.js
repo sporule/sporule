@@ -118,11 +118,12 @@ class Page extends React.Component {
                     this.toPage(parseInt(posts.page) + 1);
                 }
             }
+            const description = Page.description ?? Page.title;
             return (
                 <React.Fragment>
                     <Helmet>
                         <title>{Config.site} - {Page.title}</title>
-                        <meta name="description" content={Page.description ?? Page.title} />
+                        <meta name="description" content={description} />
                     </Helmet>
                     <Page.component posts={posts} categories={this.categories} tags={this.tags} exTags={this.excludedTags} prev={prev} next={next} pinned={pinnedPosts} searchAction={this.searchAction} />
                 </React.Fragment>
