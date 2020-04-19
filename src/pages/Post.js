@@ -122,7 +122,7 @@ class Post extends React.Component {
                 });
             }.bind(this)
         }
-        post.html = new MarkdownIt(mdConfig).use(markdownItTocAndAnchor, tocConfig).use(prism).use(iterator, 'url_new_win', 'link_open', function (tokens, idx) {
+        let html = new MarkdownIt(mdConfig).use(markdownItTocAndAnchor, tocConfig).use(prism).use(iterator, 'url_new_win', 'link_open', function (tokens, idx) {
             var aIndex = tokens[idx].attrIndex('target');
             if (aIndex < 0) {
                 tokens[idx].attrPush(['target', '_blank']);
