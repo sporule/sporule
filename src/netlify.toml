@@ -1,4 +1,9 @@
 [[redirects]]
+  from = "/category/:category"
+  to = "/categories/:category"
+  status = 301
+
+[[redirects]]
   from = "/tag/:tag"
   to = "/posts/?tags=:tag"
   status = 301
