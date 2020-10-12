@@ -67,7 +67,7 @@ class Page extends React.Component {
         let search = window.location.search
         let pageNum = queryString.parse(this.props.location.search).page;
         if (pageNum){
-            search = search.replaceAll("page="+hasPage,"abc")
+            search = search.replaceAll("page="+pageNum,"page="+page)
         }else if(search.includes("?")){
             search = search+"&page="+page;
         }else{
