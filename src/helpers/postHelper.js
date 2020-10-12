@@ -92,7 +92,7 @@ export const postsFilter = (posts, excludePinned, searchString, categories, tags
     if (searchString) {
         tempPosts.items = tempPosts.items.filter(o => JSON.stringify(o).includes(searchString));
     }
-    if (excludePinned) {
+    if (excludePinned && !searchString) {
         tempPosts.items = tempPosts.items.filter(o => {
             return !o.metas.pinned;
         })
