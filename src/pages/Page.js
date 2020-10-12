@@ -64,7 +64,16 @@ class Page extends React.Component {
 
 
     toPage = (page) => {
-        let link = window.location.pathname + "?page=" + page;
+        let search = window.location.search
+        let pageNum = queryString.parse(this.props.location.search).page;
+        if (pageNum){
+            search = search.replaceAll("page="+hasPage,"abc")
+        }else if(search.includes("?")){
+            search = search+"&page="+page;
+        }else{
+            search = search +"?page="+page;
+        }
+        let link = window.location.pathname + search;
         this.props.history.push(link);
     }
 
