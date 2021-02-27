@@ -1,8 +1,11 @@
+This project is not under actively development due to the poor performance on SEO.
+
 # Sporule
 
 ![Dependencies](https://img.shields.io/david/sporule/sporule)
 
 > A simple static blog system that runs everywhere.
+
 
 ## Latest Update
 
